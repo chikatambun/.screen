@@ -1,0 +1,62 @@
+#   Screen Options   ##
+#shell bash                      # Tell screen your default shell
+startup_message off             # Turn off start message
+defscrollback 49000
+shelltitle '$ |ext'    # Dynamic window titled for running program
+#msgwait 1                 # Set messages timeout to one second
+#nethack on                               # Turn on nethack error messages
+#backtick 0 0 0 whoami                           # Set "%0`" to equal the output of "whoami"
+
+#escape ^Oo
+
+# Change the xterm initialization string to avoid window size change
+termcapinfo xterm* 'is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;4;6l'
+
+# Last line is status: green hostname, window list in cyan, and time and date right aligned:
+# hardstatus alwayslastline "%{=b}%{G}%H: %{C}%w %=%{G}%D, %m/%d %C%a"
+
+# This status is the same as the above, except it puts "<username>@" in front of the hostname
+# hardstatus alwayslastline "%{=b}%{G}%0`@%H: %{C}%w %=%{G}%D, %m/%d"
+# hardstatus alwayslastline "%{=b}%{G}%0`@%H: %{C}%w %=%{G}%l | %D, %d %M %Y @%c:%s"
+#
+## backtick 101 31 61 $(upower -d | grep percentage | egrep -o '([0-9]+)%' | sort -u)
+backtick 101 31 61 /home/chika/bins/show_batt.sh
+## hardstatus alwayslastline "%{=b}%{G}%0@%H: %{C}%w %=%{G}%l|%D|%M|%d|%c:%s|%101`"
+hardstatus alwayslastline "%{=b}%{G}%0@%H: %{C}%w %=%{G}%l|%D|%M|%d|%c:%s|%101`"
+
+# autodetach on
+# This is useful if you want a separate screen in every running terminal window
+# but not if you have 'exec screen -XRR' in your .profile
+
+
+##   Keybindings   ##
+# F7='k7', F8='k8', F9='k9', F10='k;', F11='F1', F12='F2'
+# Good things to bind to hotkeys:
+#  prev (go to previous screen)
+#  next (go to next screen)
+#  kill (kill this window)
+#  screen (create a new window)
+#  title (rename the current window)
+#  detach (detach this session from this terminal)
+#bindkey -k k1 select 0
+#bindkey -k k2 select 1
+#bindkey -k k3 select 2
+#bindkey -k k4 select 3
+#
+#bindkey -k k5 prev
+#bindkey -k k6 next
+#
+#bindkey -k k7 title
+#
+#bindkey -k k8 screen
+#bindkey -k k9 kill
+
+#screen -t great
+screen -t core 1
+screen -t main 0
+#screen -t mon 8 bwmon
+#screen -t dae 9 tail -f /var/log/syslog
+#screen -t mon 0 htop
+####startup_message off
+####screen -t great
+## bindkey -m ' ' eval 'stuff \040' 'writebuf' 'exec sh -c "xsel -b < /tmp/screen-exchange"'
